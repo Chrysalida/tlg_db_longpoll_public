@@ -6,7 +6,7 @@ It gets message from user, wraps it into an SQL-request, and returns the answer 
 
 import IBM-db
 import logging as log
-log.basicConfig(filename='<ПУТЬ К ВАШЕМУ ФАЙЛУ.log>',level=log.INFO, format='%(asctime)s %(message)s', datefmt='%m.%d.%Y %H:%M:%S')
+log.basicConfig(filename='<ПУТЬ К ВАШЕМУ ФАЙЛУ .log>',level=log.INFO, format='%(asctime)s %(message)s', datefmt='%m.%d.%Y %H:%M:%S')
 import telebot
 
 bot = telebot.TeleBot('<YOUR TOKEN HERE>')
@@ -28,7 +28,7 @@ allLanguages={'eng': 'английский','deu': 'немецкий',
              'esp':'испанский', 'swe':'шведский',}
 
 
-#Получив текстовое сообщение, проверяем его на несколько условий:
+#having got a text message, we chech it against some conditions:
 
 @bot.message_handler(content_types=['text'])
 def get_text_messages(message):
