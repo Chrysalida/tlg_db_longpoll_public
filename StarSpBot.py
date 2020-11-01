@@ -1,12 +1,18 @@
 # -*- coding: utf-8 -*-
+"""
+The bot intended to obtain data from a cloud DB.
+It gets message from user, wraps it into an SQL-request, and returns the answer from the database
+"""
+
+
 import logging as log
-log.basicConfig(filename='path to \Bot_log.log',level=log.INFO, format='%(asctime)s %(message)s', datefmt='%m.%d.%Y %H:%M:%S')
+log.basicConfig(filename='<ПУТЬ К ВАШЕМУ ФАЙЛУ.log>',level=log.INFO, format='%(asctime)s %(message)s', datefmt='%m.%d.%Y %H:%M:%S')
 import telebot
 
-bot = telebot.TeleBot('YOUR TOKEN HERE')
+bot = telebot.TeleBot('<YOUR TOKEN HERE>')
 
 hi_list=[]
-hi_list=['hi','hello','привет','здравствуй','здравствуйте','приветик']
+hi_list=['hi','hello','привет','здравствуй','здравствуйте']
 
 alltranslators='Александров;Васильев;Захаров'
 Tra_list=alltranslators.split(';')
@@ -21,6 +27,8 @@ allLanguages={'eng': 'английский','deu': 'немецкий',
              'pol':'польский', 'ita':'итальянский',
              'esp':'испанский', 'swe':'шведский',}
 
+
+#Получив текстовое сообщение, проверяем его на несколько условий:
 
 @bot.message_handler(content_types=['text'])
 def get_text_messages(message):
@@ -44,7 +52,7 @@ def get_text_messages(message):
                         "Напишите /lang, чтобы получить список языков")
         print('User asked me for help')
 
-    elif message.text in Tra_list: #Move out into a sep function
+    elif message.text in Tra_list: 
         dsn='DRIVER={IBM DB2 ODBC DRIVER};DATABASE=BLUDB;HOSTNAME=<YOUR HOSTNAME>;PORT=50000;PROTOCOL=TCPIP;UID=<YOUR UID>;PWD=<YOUR PWD>'
         import ibm_db
         try:
@@ -71,7 +79,7 @@ def get_text_messages(message):
             ' '+str(ibm_db.result(selectStmt2,2))+' \n'+str(ibm_db.result(selectStmt2,3))+
             '\n'+str(ibm_db.result(selectStmt2,4))+'\n '+str(ibm_db.result(selectStmt2,5))
                     )
-    elif mess in allLanguages.keys(): #Move out into a sep function
+    elif mess in allLanguages.keys(): 
         dsn='DRIVER={IBM DB2 ODBC DRIVER};DATABASE=BLUDB;HOSTNAME=<YOUR HOSTNAME>;PORT=50000;PROTOCOL=TCPIP;UID=<YOUR UID>;PWD=<YOUR PWD>'
         import ibm_db
         try:
