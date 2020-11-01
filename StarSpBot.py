@@ -4,7 +4,7 @@ The bot intended to obtain data from a cloud DB.
 It gets message from user, wraps it into an SQL-request, and returns the answer from the database
 """
 
-import IBM-db
+import ibm_db
 import logging as log
 log.basicConfig(filename='<ПУТЬ К ВАШЕМУ ФАЙЛУ .log>',level=log.INFO, format='%(asctime)s %(message)s', datefmt='%m.%d.%Y %H:%M:%S')
 import telebot
@@ -52,9 +52,9 @@ def get_text_messages(message):
                         "Напишите /lang, чтобы получить список языков")
         print('User asked me for help')
 
-    elif message.text in Tra_list: 
+    elif message.text in Tra_list:
         dsn='DRIVER={IBM DB2 ODBC DRIVER};DATABASE=BLUDB;HOSTNAME=<YOUR HOSTNAME>;PORT=50000;PROTOCOL=TCPIP;UID=<YOUR UID>;PWD=<YOUR PWD>'
-        import ibm_db
+
         try:
             conn = ibm_db.connect(dsn, "", "")
             print ("Connected to database")
@@ -79,9 +79,9 @@ def get_text_messages(message):
             ' '+str(ibm_db.result(selectStmt2,2))+' \n'+str(ibm_db.result(selectStmt2,3))+
             '\n'+str(ibm_db.result(selectStmt2,4))+'\n '+str(ibm_db.result(selectStmt2,5))
                     )
-    elif mess in allLanguages.keys(): 
+    elif mess in allLanguages.keys():
         dsn='DRIVER={IBM DB2 ODBC DRIVER};DATABASE=BLUDB;HOSTNAME=<YOUR HOSTNAME>;PORT=50000;PROTOCOL=TCPIP;UID=<YOUR UID>;PWD=<YOUR PWD>'
-        import ibm_db
+
         try:
             conn = ibm_db.connect(dsn, "", "")
             print ("Connected to database")
@@ -106,7 +106,7 @@ def get_text_messages(message):
             )
     elif len(message.text)==7 and mess[:3] in allLanguages.keys(): #Move out into a sep function
         dsn='DRIVER={IBM DB2 ODBC DRIVER};DATABASE=BLUDB;HOSTNAME=<YOUR HOSTNAME>;PORT=50000;PROTOCOL=TCPIP;UID=<YOUR UID>;PWD=<YOUR PWD>'
-        import ibm_db
+
         try:
             conn = ibm_db.connect(dsn, "", "")
             print ("Connected to database")
