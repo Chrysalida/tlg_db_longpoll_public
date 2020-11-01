@@ -4,7 +4,7 @@ The bot intended to obtain data from a cloud DB.
 It gets message from user, wraps it into an SQL-request, and returns the answer from the database
 """
 
-
+import IBM-db
 import logging as log
 log.basicConfig(filename='<ПУТЬ К ВАШЕМУ ФАЙЛУ.log>',level=log.INFO, format='%(asctime)s %(message)s', datefmt='%m.%d.%Y %H:%M:%S')
 import telebot
